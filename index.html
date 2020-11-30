@@ -192,7 +192,7 @@ data.features = data.features.map(function (d) {
 d.properties.year = new Date(d.properties.time).getFullYear();
 return d;
 });
- 
+})
     $(document).ready(function () {
       $.ajax({
         type: "GET",
@@ -271,13 +271,12 @@ return d;
             });
 
             var bbox = turf.bbox(data);
-            map.fitBounds(bbox, { padding: 50 });
-            
+            map.fitBounds(bbox, { padding: 50 }); 
           });
         });
       };
     });
-
+});
     </script>
  
 </body>
