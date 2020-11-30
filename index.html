@@ -76,57 +76,8 @@
 </head>
 
 <body>
-    <style>
-        .map-overlay {
-        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        position: absolute;
-        width: 25%;
-        top: 0;
-        left: 0;
-        padding: 10px;
-        }
-        .map-overlay .map-overlay-inner {
-background-color: #fff;
-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-border-radius: 3px;
-padding: 10px;
-margin-bottom: 10px;
-}
-.map-overlay h2 {
-line-height: 24px;
-display: block;
-margin: 0 0 10px;
-}
-.map-overlay .legend .bar {
-height: 10px;
-width: 100%;
-background: linear-gradient(to right, #fca107, #7f3121);
-}
-.map-overlay input {
-background-color: transparent;
-display: inline-block;
-width: 100%;
-position: relative;
-margin: 0;
-cursor: ew-resize;
-}
-</style>
 
   <div id='map'></div>
-  <div class="map-overlay top">
-    <div class="map-overlay-inner">
-    <h2>Significant earthquakes in 2015</h2>
-    <label id="month"></label>
-    <input id="slider" type="range" min="0" max="11" step="1" value="0" />
-    </div>
-    <div class="map-overlay-inner">
-    <div id="legend" class="legend">
-    <div class="bar"></div>
-    <div>Magnitude (m)</div>
-    </div>
-    </div>
-    </div>
-    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>    
   <script>
 
     var transformRequest = (url, resourceType) => {
@@ -148,51 +99,7 @@ cursor: ew-resize;
       zoom: 10,// starting zoom
       transformRequest: transformRequest
     });
-    var years = [
-        '2000',
-        '2001',
-        '2002',
-        '2003',
-        '2004',
-        '2005',
-        '2006',
-        '2007',
-        '2008',
-        '2009',
-        '2010',
-        '2011',
-        '2012',
-        '2013',
-        '2014',
-        '2015',
-        '2016',
-        '2017',
-        '2018',
-        '2019',
-        '2020'
-    ];
-function filterBy(year) {
-var filters = ['==', 'year', year];
-map.setFilter('earthquake-circles', filters);
-map.setFilter('earthquake-labels', filters);
- 
-// Set the label to the month
-document.getElementById('year').textContent = years[year];
-}
- 
-map.on('load', function () {
-    d3.json(
-'https://drive.google.com/file/d/18eS3o7GKGFOUnB7l8zBLzX2Fxal_F50p/view?usp=sharing',
-function (err, data) {
-if (err) throw err;
- 
-// Create a month property value based on time
-// used to filter against.
-data.features = data.features.map(function (d) {
-d.properties.year = new Date(d.properties.time).getFullYear();
-return d;
-});
-})
+
     $(document).ready(function () {
       $.ajax({
         type: "GET",
@@ -202,7 +109,7 @@ return d;
         success: function (csvData) { makeGeoJSON(csvData); }
       });
 
-      
+
 
       function makeGeoJSON(csvData) {
         csv2geojson.csv2geojson(csvData, {
@@ -235,7 +142,7 @@ return d;
               //set popup text 
               //You can adjust the values of the popup to match the headers of your CSV. 
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV. 
-              var description = `<h3>` + e.features[0].properties.Volcano_Name + `</h3>` + `<h4>` + `<b>` + `Address: ` + `</b>` + e.features[0].properties.Volcano_Number + `</h4>` + `<h4>` + `<b>` + `Phone: ` + `</b>` + e.features[0].properties.Country + `</h4>`;
+              var description = `<h3>` + e.features[0].properties.Name + `</h3>` + `<h4>` + `<b>` + `Address: ` + `</b>` + e.features[0].properties.Address + `</h4>` + `<h4>` + `<b>` + `Phone: ` + `</b>` + e.features[0].properties.Phone + `</h4>`;
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears
@@ -251,14 +158,6 @@ return d;
                 .setHTML(description)
                 .addTo(map);
             });
-            filterBy(0);
- 
-            document
-                .getElementById('slider')
-            .addEventListener('input', function (e) {
-            var month = parseInt(e.target.value, 10);
-            filterBy(month);
-            });
 
             // Change the cursor to a pointer when the mouse is over the places layer.
             map.on('mouseenter', 'csvData', function () {
@@ -271,13 +170,19 @@ return d;
             });
 
             var bbox = turf.bbox(data);
-            map.fitBounds(bbox, { padding: 50 }); 
+            map.fitBounds(bbox, { padding: 50 });
+
           });
+
         });
       };
     });
-});
-    </script>
- 
+
+
+
+
+  </script>
+
 </body>
+
 </html>
