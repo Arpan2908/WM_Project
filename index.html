@@ -64,7 +64,11 @@ body {
   display: inline-block;
   text-align: right;
 }
-
+.mapboxgl-popup {
+max-width: 400px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+</style
 </style>
 </head>
 
@@ -114,6 +118,14 @@ new mapboxgl.Popup()
 .setLngLat(coordinates)
 .setHTML(description)
 .addTo(map);
+});
+	    map.on('mouseenter', 'places', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'places', function () {
+map.getCanvas().style.cursor = '';
 });
     paint: {
       'circle-radius': [
