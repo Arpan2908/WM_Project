@@ -67,7 +67,7 @@ body {
     <div id='map'></div>
     <div id='console'>
     <h1>Volcanic Eruptions</h1>
-    <p>Data: <a href='https://www.volcanodiscovery.com/'>Volcanic erutpions through</a> 2000 to 2020</p>
+    <p>Data: <a href='https://www.volcanodiscovery.com/'>Volcanic eruptions through</a> 2000 to 2020</p>
     <div class='session'>
         <h2>Years</h2>
         <div class='row colors'>
@@ -125,12 +125,24 @@ body {
         2020, '#A2719B',
       ],
       'circle-opacity': 0.8
-          },    
-    //filter: ['==', ['number', ['get', 'Year']], 5] 
-
+    },
+	filter: ['==', ['number', ['get', 'Year']], 5]
   });
+  document.getElementById('slider').addEventListener('input', function(e) {
+  var hour = parseInt(e.target.value);
+  // update the map
+  map.setFilter('collisions', ['==', ['number', ['get', 'Year']],year]);
+
+  // converting 0-23 hour to AMPM format
+  var ampm = hour >= 12 ? 'PM' : 'AM';
+  var hour12 = hour % 12 ? hour % 12 : 12;
+
+  // update text in the UI
+  document.getElementById('active-hour').innerText = hour12 + ampm;
+});
 });
 
     </script>
+
 
     
