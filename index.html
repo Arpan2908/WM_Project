@@ -78,14 +78,14 @@ body {
         </div>
         <div class='row labels'>
           <div class='label'>2000</div>
-          <div class='label'>2005</div>
-          <div class='label'>2010</div>
-          <div class='label'>2015</div>
-          <div class='label'>2020</div>
+          <div class='label'>  2005</div>
+          <div class='label'>  2010</div>
+          <div class='label'>  2015</div>
+          <div class='label'>  2020</div>
         </div>
       </div>
       <div class='session' id='sliderbar'>
-        <h2>Year: <label id='active-hour'>2005</label></h2>
+        <h2>Year: <label id='active-year'>2000-</label></h2>
         <input id='slider' class='row' type='range' min='2000' max='2020' step='1' value='2000' />
       </div>
     </div>
@@ -130,7 +130,7 @@ body {
       ],
       'circle-opacity': 0.8
     },
-	//filter: ['==', ['number', ['get', 'Year']], 5]
+	filter: ['==', ['number', ['get', 'Year']], 5]
   });
   //document.getElementById('slider').addEventListener('input', function(e) {
   //var hour = parseInt(e.target.value);
@@ -145,6 +145,18 @@ body {
   //document.getElementById('active-hour').innerText = hour;
 
   });
+  document.getElementById('slider').addEventListener('input', function(e) {
+  var year = parseInt(e.target.value);
+  // update the map
+  map.setFilter('points', ['==', ['number', ['get', 'year']], year]);
+
+  // converting 0-23 hour to AMPM format
+  //var ampm = hour >= 12 ? 'PM' : 'AM';
+  //var hour12 = hour % 12 ? hour % 12 : 12;
+
+  // update text in the UI
+  document.getElementById('active-year').innerText = year;
+});
 
 
 
