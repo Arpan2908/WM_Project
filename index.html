@@ -128,17 +128,17 @@ body {
     },
 	filter: ['==', ['number', ['get', 'Year']], 5]
   });
-  document.getElementById('slider').addEventListener('input', function(e) {
-  var hour = parseInt(e.target.value);
+  //document.getElementById('slider').addEventListener('input', function(e) {
+  //var hour = parseInt(e.target.value);
   // update the map
-  map.setFilter('points', ['==', ['number', ['get', 'Year']],year]);
+  //map.setFilter('points', ['==', ['number', ['get', 'Year']],year]);
 
   // converting 0-23 hour to AMPM format
   //var ampm = hour >= 12 ? 'PM' : 'AM';
   //var hour12 = hour % 12 ? hour % 12 : 12;
 
   // update text in the UI
-  document.getElementById('active-hour').innerText = hour;
+  //document.getElementById('active-hour').innerText = hour;
 });
 });
 
