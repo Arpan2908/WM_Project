@@ -64,10 +64,6 @@ body {
   display: inline-block;
   text-align: right;
 }
-#mapboxgl-popup {
-max-width: 400px;
-font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-}
 </style>
 </head>
 
@@ -101,7 +97,7 @@ font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     source: {
       type: 'geojson',
       data: './VolcanicData.geojson' // replace this with the url of your own geojson
-    },
+    });
 	    map.on('click', 'points', function (e) {
 var coordinates = e.features[0].geometry.coordinates.slice();
 var description = e.features[0].properties.description;
@@ -118,12 +114,12 @@ new mapboxgl.Popup()
 .setHTML(description)
 .addTo(map);
 });
-	    map.on('mouseenter', 'places', function () {
+	    map.on('mouseenter', 'points', function () {
 map.getCanvas().style.cursor = 'pointer';
 });
  
 // Change it back to a pointer when it leaves.
-map.on('mouseleave', 'places', function () {
+map.on('mouseleave', 'points', function () {
 map.getCanvas().style.cursor = '';
 });
     paint: {
