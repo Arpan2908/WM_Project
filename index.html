@@ -234,7 +234,7 @@ geojson.features.forEach(function(marker) {
         map.flyTo({
           center: currentFeature.geometry.coordinates,
           zoom: 4
-        });
+        }).addTo(map);
       }
 	    
   
