@@ -164,7 +164,7 @@ coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
  
 new mapboxgl.Popup()
 .setLngLat(coordinates)
-.setHTML('<h3>Volcano Name</h3> + description)
+.setHTML('<h3>Volcano Name</h3>' + description)
 .addTo(map);
 });
  
