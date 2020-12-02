@@ -6,6 +6,9 @@
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
 <style>
 body {
     margin: 0;
@@ -82,8 +85,6 @@ body {
         <input id='slider' class='row' type='range' min='2000' max='2020' step='1' value='2000' />
       </div>
     </div>
-</body>
-
 
     <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiY2xhcmt1IiwiYSI6ImNrZ2ExNjdjYzAycmwzMW1mMm92Ynl5cDIifQ.0OXA0o-WYeuKNfhhLc45kQ';
@@ -198,7 +199,8 @@ geojson.features.forEach(function(marker) {
 
   layers.Streets.addTo(map);
   L.control.layers(layers).addTo(map);
-    </script>
+</script>
+</body>
 </html>
 
 
