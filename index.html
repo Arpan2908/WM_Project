@@ -19,14 +19,6 @@ body {
     bottom: 0;
     width: 100%;
   }
-  .marker {
-background-image: url('Volcano.jpg');
-display: block;
-border: none;
-border-radius: 50%;
-cursor: pointer;
-padding: 0;
-}
   h1 {
     font-size: 20px;
     line-height: 30px;
@@ -195,9 +187,6 @@ geojson.features.forEach(function(marker) {
     .setLngLat(marker.geometry.coordinates)
     .addTo(map);
 });
-	    var marker = new mapboxgl.Marker()
-.setLngLat(coordinates)
-.addTo(map);
 
     </script>
 </html>
