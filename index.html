@@ -230,6 +230,12 @@ geojson.features.forEach(function(marker) {
     .setLngLat(marker.geometry.coordinates)
     .addTo(map);
 });
+	    function flyToStore(currentFeature) {
+        map.flyTo({
+          center: currentFeature.geometry.coordinates,
+          zoom: 4
+        });
+      }
 	    
   
 </script>
