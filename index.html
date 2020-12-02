@@ -74,7 +74,7 @@ body {
 	</style>
 	<style>
 #menu {
-position: top-right;
+position: relative;
 background: #fff;
 padding: 10px;nt-family: 'Open Sans', sans-serif;
 }
@@ -214,18 +214,15 @@ geojson.features.forEach(function(marker) {
     .setLngLat(marker.geometry.coordinates)
     .addTo(map);
 });
-var layerList = document.getElementById('menu');
-var inputs = layerList.getElementsByTagName('input');
- 
-function switchLayer(layer) {
-var layerId = layer.target.id;
-map.setStyle('mapbox://styles/mapbox/' + layerId);
-}
- 
-for (var i = 0; i < inputs.length; i++) {
-inputs[i].onclick = switchLayer;
-}
+	    
+  var layers = {
+      Streets: L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'),
+      Light: L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'),
+      Satellite: L.mapbox.styleLayer('mapbox://styles/mapbox/satellite-v9')
+  };
 
+  layers.Streets.addTo(map);
+  L.control.layers(layers).addTo(map);
     </script>
 </html>
 
