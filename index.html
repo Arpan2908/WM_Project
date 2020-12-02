@@ -233,16 +233,18 @@ geojson.features.forEach(function(marker) {
   el.className = 'marker';
 
   // make a marker for each feature and add to the map
+  // add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
   new mapboxgl.Marker(el)
     .setLngLat(marker.geometry.coordinates)
     .addTo(map);
 });
-	    function flyToStore(currentFeature) {
-        map.flyTo({
-          center: currentFeature.geometry.coordinates,
-          zoom: 4
-        }).addTo(map);
-      }
 	    
   
 </script>
