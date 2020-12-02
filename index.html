@@ -226,11 +226,11 @@ map.getCanvas().style.cursor = 'pointer';
 map.on('mouseleave', 'points', function () {
 map.getCanvas().style.cursor = '';    
 });
-//geojson.features.forEach(function(marker) {
+geojson.features.forEach(function(marker) {
 
   // create a HTML element for each feature
-  //var el = document.createElement('div');
-  //el.className = 'marker';
+  var el = document.createElement('div');
+  el.className = 'marker';
 
  geojson.features.forEach(function (marker) {
         // create a HTML element for each feature
